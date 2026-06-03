@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calma Studio — AI Content Automation Case Study</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Georgia', serif;
+      background: #faf9f7;
+      color: #2d2d2d;
+      line-height: 1.7;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #faf9f7;
+      border-bottom: 1px solid #e8e4df;
+      padding: 18px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    nav .logo {
+      font-size: 16px;
+      font-weight: 600;
+      color: #5b8a7a;
+      letter-spacing: 0.05em;
+    }
+
+    nav .links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    nav .links a {
+      font-family: 'Arial', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #888;
+      text-decoration: none;
+    }
+
+    nav .links a:hover { color: #5b8a7a; }
+
+    .hero {
+      padding: 140px 48px 80px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .tag {
+      font-family: 'Arial', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #5b8a7a;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 48px;
+      font-weight: 400;
+      line-height: 1.2;
+      color: #1a2e28;
+      margin-bottom: 24px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #666;
+      max-width: 600px;
+      margin-bottom: 48px;
+    }
+
+    .meta {
+      display: flex;
+      gap: 32px;
+      font-family: 'Arial', sans-serif;
+      font-size: 13px;
+      color: #888;
+      border-top: 1px solid #e8e4df;
+      padding-top: 24px;
+    }
+
+    .meta span { color: #2d2d2d; font-weight: 600; }
+
+    section {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 64px 48px;
+      border-top: 1px solid #e8e4df;
+    }
+
+    .section-tag {
+      font-family: 'Arial', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #5b8a7a;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: 32px;
+      font-weight: 400;
+      color: #1a2e28;
+      margin-bottom: 24px;
+    }
+
+    p {
+      font-size: 17px;
+      color: #444;
+      margin-bottom: 20px;
+      max-width: 680px;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .problem-card {
+      background: #fff;
+      border: 1px solid #e8e4df;
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .problem-card .number {
+      font-family: 'Arial', sans-serif;
+      font-size: 11px;
+      color: #5b8a7a;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .problem-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a2e28;
+      margin-bottom: 8px;
+    }
+
+    .problem-card p {
+      font-size: 14px;
+      color: #666;
+      margin: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 32px;
+      font-family: 'Arial', sans-serif;
+      font-size: 14px;
+    }
+
+    th {
+      text-align: left;
+      padding: 12px 16px;
+      background: #1a2e28;
+      color: #fff;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #e8e4df;
+      color: #444;
+    }
+
+    tr:nth-child(even) td { background: #f5f3f0; }
+
+    tr:last-child td {
+      font-weight: 700;
+      color: #1a2e28;
+      background: #eef4f2;
+    }
+
+    .workflow {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .workflow-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      background: #fff;
+      border: 1px solid #e8e4df;
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .step-number {
+      background: #5b8a7a;
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Arial', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .step-content h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a2e28;
+      margin-bottom: 6px;
+    }
+
+    .step-content p {
+      font-size: 14px;
+      color: #666;
+      margin: 0;
+    }
+
+    .prompt-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .prompt-card {
+      background: #1a2e28;
+      border-radius: 12px;
+      padding: 24px;
+      color: #fff;
+    }
+
+    .prompt-card .platform {
+      font-family: 'Arial', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #a8c4bc;
+      margin-bottom: 8px;
+    }
+
+    .prompt-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .prompt-card p {
+      font-size: 13px;
+      color: #a8c4bc;
+      margin: 0;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .result-card {
+      background: #fff;
+      border: 1px solid #e8e4df;
+      border-radius: 12px;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .result-card .before {
+      font-family: 'Arial', sans-serif;
+      font-size: 11px;
+      color: #999;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .result-card .after {
+      font-size: 36px;
+      font-weight: 700;
+      color: #5b8a7a;
+      margin-bottom: 4px;
+    }
+
+    .result-card .label {
+      font-family: 'Arial', sans-serif;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .stack-item {
+      background: #fff;
+      border: 1px solid #e8e4df;
+      border-radius: 20px;
+      padding: 8px 18px;
+      font-family: 'Arial', sans-serif;
+      font-size: 13px;
+      color: #444;
+    }
+
+    footer {
+      text-align: center;
+      padding: 48px;
+      font-family: 'Arial', sans-serif;
+      font-size: 13px;
+      color: #aaa;
+      border-top: 1px solid #e8e4df;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Calma Studio</div>
+  <ul class="links">
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#diagnostic">Diagnostic</a></li>
+    <li><a href="#solution">Solution</a></li>
+    <li><a href="#results">Results</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="tag">AI Content Automation · Case Study</div>
+  <h1>From 12 hours a week to 40 minutes</h1>
+  <p class="subtitle">
+    How I designed an AI-powered multilingual content system for a wellness 
+    brand using Claude, Zapier, and Notion — eliminating manual content 
+    creation across Instagram, LinkedIn, and Facebook in 3 languages.
+  </p>
+  <div class="meta">
+    <div>Company <span>Calma Studio</span></div>
+    <div>Industry <span>Wellness & Mindfulness</span></div>
+    <div>Markets <span>ES · PT · EN</span></div>
+    <div>Built by <span>Eliana Ochoa</span></div>
+  </div>
+</div>
+
+<section id="problem">
+  <div class="section-tag">01 — The Problem</div>
+  <h2>A 2-person team drowning in content tasks</h2>
+  <p>
+    Calma Studio serves 3,000+ users across Spain, Portugal, LATAM, and the UK. 
+    Their content team was spending 12+ hours every week writing social media 
+    posts manually — in three languages, across three platforms, with no 
+    consistent tone and no editorial calendar.
+  </p>
+  <p>LinkedIn had been completely abandoned. Instagram was inconsistent. 
+  The team had no time left for strategy, community engagement, or growth.</p>
+
+  <div class="problem-grid">
+    <div class="problem-card">
+      <div class="number">01</div>
+      <h3>12+ hours/week lost</h3>
+      <p>Manual writing, translation, and scheduling across 3 platforms and 3 languages every week.</p>
+    </div>
+    <div class="problem-card">
+      <div class="number">02</div>
+      <h3>Inconsistent brand voice</h3>
+      <p>Different team members writing in different styles with no shared guidelines or templates.</p>
+    </div>
+    <div class="problem-card">
+      <div class="number">03</div>
+      <h3>LinkedIn abandoned</h3>
+      <p>Only 2-3 posts per month on LinkedIn despite it being the primary B2B acquisition channel.</p>
+    </div>
+    <div class="problem-card">
+      <div class="number">04</div>
+      <h3>No editorial calendar</h3>
+      <p>Content was improvised weekly with no forward planning or performance tracking.</p>
+    </div>
+  </div>
+</section>
+
+<section id="diagnostic">
+  <div class="section-tag">02 — The Diagnostic</div>
+  <h2>Where the time was actually going</h2>
+  <p>
+    Before designing any solution, I mapped every manual content task, 
+    estimated the weekly time cost, and identified which could be automated 
+    without losing quality.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Task</th>
+        <th>Frequency</th>
+        <th>Time/week</th>
+        <th>Languages</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Instagram caption writing</td>
+        <td>Daily</td>
+        <td>3.5 hrs</td>
+        <td>ES, PT, EN</td>
+      </tr>
+      <tr>
+        <td>LinkedIn post writing</td>
+        <td>2x/week</td>
+        <td>2 hrs</td>
+        <td>EN, ES</td>
+      </tr>
+      <tr>
+        <td>Facebook community posts</td>
+        <td>3x/week</td>
+        <td>2 hrs</td>
+        <td>ES, PT</td>
+      </tr>
+      <tr>
+        <td>Hashtag research</td>
+        <td>Weekly</td>
+        <td>1 hr</td>
+        <td>All</td>
+      </tr>
+      <tr>
+        <td>Content calendar update</td>
+        <td>Weekly</td>
+        <td>1.5 hrs</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Translation & adaptation</td>
+        <td>Daily</td>
+        <td>2 hrs</td>
+        <td>All</td>
+      </tr>
+      <tr>
+        <td><strong>Total</strong></td>
+        <td>—</td>
+        <td><strong>12+ hrs/week</strong></td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="solution">
+  <div class="section-tag">03 — The Solution</div>
+  <h2>An AI content system built on Claude, Zapier and Notion</h2>
+  <p>
+    The system works in one direction: the team inputs a wellness topic, 
+    and the automation handles everything else — generation, translation, 
+    scheduling, and calendar logging.
+  </p>
+
+  <div class="workflow">
+    <div class="workflow-step">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <h3>Topic input in Notion</h3>
+        <p>Team fills in a Notion database row: topic, platform, language, publish date. When status changes to "Ready", Zapier triggers automatically.</p>
+      </div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <h3>Zapier selects the right prompt</h3>
+        <p>Based on platform + language combination, Zapier selects the correct Claude prompt template (6 prompts total: Instagram, LinkedIn, Facebook × ES/PT/EN).</p>
+      </div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <h3>Claude generates the content</h3>
+        <p>Claude API receives the prompt with the topic filled in and returns platform-specific, brand-consistent copy in the correct language and tone.</p>
+      </div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-number">4</div>
+      <div class="step-content">
+        <h3>Team reviews in Notion</h3>
+        <p>Generated content is written back to Notion for a quick human review. Status updates to "Approved" when ready to publish.</p>
+      </div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-number">5</div>
+      <div class="step-content">
+        <h3>Zapier publishes automatically</h3>
+        <p>On approval, Zapier publishes to the correct platform via API. Notion calendar is updated automatically with publish date and status.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 48px;">
+    <div class="section-tag">Prompt system</div>
+    <h2>6 Claude prompts — one for each platform and language</h2>
+    <p>Each prompt is engineered to match the platform format, audience, 
+    and brand voice — Instagram captions feel different from LinkedIn posts, 
+    and Spanish content is adapted culturally, not just translated.</p>
+  </div>
+
+  <div class="prompt-grid">
+    <div class="prompt-card">
+      <div class="platform">Instagram</div>
+      <h3>ES · PT · EN</h3>
+      <p>150 words max · reflection question · 5 hashtags · soft CTA · warm community tone</p>
+    </div>
+    <div class="prompt-card">
+      <div class="platform">LinkedIn</div>
+      <h3>ES · EN</h3>
+      <p>150-200 words · thought leadership · bold opening · 3 takeaways for HR managers · engagement question</p>
+    </div>
+    <div class="prompt-card">
+      <div class="platform">Facebook</div>
+      <h3>ES · PT</h3>
+      <p>100-120 words · community-first tone · direct question · weekly micro-challenge · 2-3 emojis</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 32px;">
+    <div class="section-tag">Tech stack</div>
+    <div class="stack">
+      <div class="stack-item">Claude API</div>
+      <div class="stack-item">Zapier</div>
+      <div class="stack-item">Notion</div>
+      <div class="stack-item">Instagram Graph API</div>
+      <div class="stack-item">LinkedIn API</div>
+      <div class="stack-item">Facebook Pages API</div>
+    </div>
+  </div>
+</section>
+
+<section id="results">
+  <div class="section-tag">04 — Results</div>
+  <h2>10 hours freed every week</h2>
+  <p>
+    The system reduced content production time by 94% while increasing 
+    output volume and consistency across all three platforms and languages.
+  </p>
+
+  <div class="results-grid">
+    <div class="result-card">
+      <div class="before">Down from 12 hrs/week</div>
+      <div class="after">40 min</div>
+      <div class="label">Weekly time on content</div>
+    </div>
+    <div class="result-card">
+      <div class="before">Was 2-3/month</div>
+      <div class="after">8</div>
+      <div class="label">LinkedIn posts per month</div>
+    </div>
+    <div class="result-card">
+      <div class="before">Was inconsistent</div>
+      <div class="after">3</div>
+      <div class="label">Languages covered consistently</div>
+    </div>
+    <div class="result-card">
+      <div class="before">Was 5/week</div>
+      <div class="after">7</div>
+      <div class="label">Instagram posts per week</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built by Eliana Ochoa · Operations & AI Automation Specialist · Porto, Portugal
+</footer>
+
+</body>
+</html>
