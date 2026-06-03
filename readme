@@ -1,0 +1,36 @@
+# Calma Studio — AI Content Automation Case Study
+
+A simulated business diagnostic and automation build, created as a portfolio 
+project to demonstrate AI-powered content systems, prompt engineering, and 
+workflow automation for social media operations.
+
+---
+
+## What is this?
+
+**Calma Studio** is a fictional online wellness and mindfulness platform 
+(Spain/Portugal/LATAM/UK · 8 people · €180K ARR). I created it to simulate 
+a real consulting engagement:
+
+1. **Diagnosed the problem** — mapped every manual content task and quantified the time cost
+2. **Designed the system** — Claude prompts + Zapier workflows + Notion editorial calendar
+3. **Built the automation** — working solution for multilingual content creation across Instagram, LinkedIn and Facebook
+
+---
+
+## The problem
+
+Calma Studio's 2-person team was spending 12+ hours per week creating social 
+media content manually across 4 languages (ES, PT, EN) and 3 platforms 
+(Instagram, LinkedIn, Facebook). No consistent tone, no editorial calendar, 
+LinkedIn completely abandoned.
+
+---
+
+## The diagnostic: time audit
+
+| Task | Frequency | Time/week | Languages |
+|------|-----------|-----------|-----------|
+| Instagram caption writing | Daily | 3.5 hrs | ES, PT, EN |
+| LinkedIn post writing | 2x/week | 2 hrs | EN, ES |
+| Facebook community posts |ss
